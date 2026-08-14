@@ -1,0 +1,45 @@
+{
+  "name": "@dsh-plugin-koishi/workspace",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DeepSeek Harness gateway and Koishi companion plugin workspace.",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=dsh-plugin-koishi && npm run build --workspace=koishi-plugin-dsh-bridge",
+    "check": "npm run lint && npm run format:check && npm run check-types && npm test && npm run build && npm run publint && npm run check:packages",
+    "check:packages": "node scripts/check-packages.mjs",
+    "check-types": "tsc --noEmit",
+    "clean": "rimraf packages/*/dist coverage *.tsbuildinfo packages/*/*.tsbuildinfo",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "oxlint .",
+    "publint": "publint packages/dsh-plugin-koishi && publint packages/koishi-plugin-dsh-bridge",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "packageManager": "npm@10.9.3",
+  "license": "MIT",
+  "devDependencies": {
+    "@deepseek-ai/cordis": "4.0.1",
+    "@deepseek-ai/dsh-agent": "0.1.0-rc.6",
+    "@deepseek-ai/dsh-llm": "0.1.0-rc.6",
+    "@deepseek-ai/dsh-session": "0.1.0-rc.6",
+    "@deepseek-ai/schemastery": "3.18.1",
+    "@types/node": "^22.18.0",
+    "@vitest/coverage-v8": "^4.1.10",
+    "koishi": "^4.18.11",
+    "oxlint": "^1.77.0",
+    "pkgroll": "^2.27.1",
+    "prettier": "^3.6.2",
+    "publint": "^0.3.13",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
+  }
+}

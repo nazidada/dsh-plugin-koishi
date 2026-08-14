@@ -1,0 +1,23 @@
+# Add this entry under the existing Koishi application's plugins mapping.
+# Start the Harness gateway first because eagerCheck defaults to true.
+
+plugins:
+  dsh-bridge:
+    baseURL: http://127.0.0.1:8787
+    messagePath: /v1/koishi/messages
+    resetPath: /v1/koishi/sessions/reset
+    healthPath: /healthz
+    tokenEnv: DSH_KOISHI_TOKEN
+    trigger: direct-and-mention
+    allowedChannels:
+      # Keep this rule aligned with the Harness gateway rule.
+      - platform: onebot
+        channelId: CHANGE_ME
+        isDirect: false
+    maxInputChars: 12000
+    requestTimeoutMs: 195000
+    eagerCheck: true
+    emptyReply: Harness 没有返回可发送的文本。
+    busyReply: Harness 当前排队已满，请稍后再试。
+    timeoutReply: Harness 本轮处理超时，请稍后再试。
+    errorReply: Harness 网关暂时不可用，请稍后再试。

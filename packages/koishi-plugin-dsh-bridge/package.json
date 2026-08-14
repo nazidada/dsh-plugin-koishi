@@ -1,0 +1,70 @@
+{
+  "name": "koishi-plugin-dsh-bridge",
+  "version": "0.1.0",
+  "description": "Forward selected Koishi conversations to dsh-plugin-koishi.",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "pkgroll --sourcemap --packagejson=!package.json"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "keywords": [
+    "koishi",
+    "plugin",
+    "deepseek",
+    "harness",
+    "dsh",
+    "chatbot"
+  ],
+  "homepage": "https://github.com/nazidada/dsh-plugin-koishi#readme",
+  "bugs": {
+    "url": "https://github.com/nazidada/dsh-plugin-koishi/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nazidada/dsh-plugin-koishi.git",
+    "directory": "packages/koishi-plugin-dsh-bridge"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "koishi": {
+    "category": "ai",
+    "description": {
+      "zh": "将允许的 Koishi 文本会话转发到 DeepSeek Harness 网关。",
+      "en": "Forward allowed Koishi text conversations to a DeepSeek Harness gateway."
+    },
+    "service": {
+      "implements": [
+        "dshBridge"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "koishi": "^4.18.11"
+  }
+}
